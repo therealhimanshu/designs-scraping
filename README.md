@@ -1,4 +1,4 @@
-# designs-scraping
+# E-commerce Designs Scraping
 
 A comprehensive collection of web scraping tools for extracting product data from fashion and design e-commerce platforms. This repository contains multiple scraper implementations using both Python and Google Apps Script, each tailored to different target websites.
 
