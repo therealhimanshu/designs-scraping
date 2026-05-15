@@ -32,6 +32,7 @@ A high-performance asynchronous Python scraper for Zara's UK fashion catalog.
 - `asyncio` - Asynchronous I/O
 - `crawl4ai` - Web crawling with JavaScript support
 - `pandas` - Data manipulation and CSV export
+- `playwright` - Headless browser automation
 - `re` - Regular expression parsing
 - `urllib.parse` - URL manipulation
 
@@ -52,13 +53,14 @@ OUTPUT_CSV = "zara_products.csv"
 
 #### Usage:
 ```bash
-pip install crawl4ai pandas
+pip install crawl4ai pandas playwright
+playwright install
 python zara-scraping.py
 ```
 
 ---
 
-### 2. **Savana Scraper** (`savana-designs-scraping`)
+### 2. **Savana Scraper** (`savana-scraping.gs`)
 
 Google Apps Script for scraping Savana product data directly into Google Sheets via sitemap.
 
@@ -88,7 +90,7 @@ Google Apps Script for scraping Savana product data directly into Google Sheets 
 
 #### Setup:
 1. Open Google Apps Script in Google Sheets
-2. Copy the entire `savana-designs-scraping` code
+2. Copy the entire `savana-scraping.gs` code
 3. Run `fetchAndScrapeSavana()` function
 4. Authorize necessary permissions
 
@@ -156,6 +158,7 @@ Create a time-based trigger in Apps Script to run daily/hourly:
 ```
 crawl4ai>=0.3.0
 pandas>=1.3.0
+playwright>=1.40.0
 ```
 
 ### Google Apps Script (Savana & Cider):
@@ -178,7 +181,10 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install crawl4ai pandas playwright
+
+# Install Playwright browsers (required for JavaScript rendering)
+playwright install
 
 # Run the scraper
 python zara-scraping.py
@@ -188,7 +194,7 @@ python zara-scraping.py
 
 1. **Open Google Sheets** - Create a new spreadsheet or use an existing one
 2. **Open Apps Script** - Tools → <> Script Editor
-3. **Copy the code** - Paste the entire script from `savana-designs-scraping` or `cider-scraping.gs`
+3. **Copy the code** - Paste the entire script from `savana-scraping.gs` or `cider-scraping.gs`
 4. **Set up headers** in your sheet:
    ```
    Date | URL | Name | Price | Discount | Stock/Button | Image
@@ -245,6 +251,7 @@ Striped Shirt,2546081,https://www.zara.com/...,https://image.url,79.95 GBP,in_st
 ## 🔍 Troubleshooting
 
 ### Zara Scraper
+- **Playwright browser not found?** Run `playwright install` to install required browsers
 - **No products found?** Check if URL structure has changed or if page requires authentication
 - **Timeout errors?** Increase `DELAY_BETWEEN_LIST_PAGES` value
 - **Empty CSV?** Verify regex patterns match current HTML structure
